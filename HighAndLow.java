@@ -30,7 +30,7 @@ public class HighAndLow {
 		String select=sc.nextLine();
 		if (select.equals("h")) {
 			System.out.println("→Highを選択しました。");
-		}else{
+		} else {
 			System.out.println("→Lowを選択しました。");
 		}
 
@@ -52,22 +52,22 @@ public class HighAndLow {
 
 		if (leftCard<rightCard) {
 			result="h";
-			}if(leftCard>rightCard) {
-				result="l";
-		}else if(leftCard==rightCard){
+		} if (leftCard>rightCard) {
+			result="l";
+		} else if (leftCard==rightCard){
 			result=select;
 		}
 
-		if(select.equals(result)) {
+		if (select.equals(result)) {
 			System.out.println("  →you Win!");
-		}else {
+		} else {
 			System.out.println("  →you Lose..");
 			System.out.println();
 			System.out.println("  --ゲーム終了--");
 			break;
 		}
-		System.out.println();
-		System.out.println("  --ゲーム終了--");
+			System.out.println();
+			System.out.println("  --ゲーム終了--");
 		}
 	}
 }
