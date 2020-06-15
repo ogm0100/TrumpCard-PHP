@@ -50,12 +50,12 @@ public class HighAndLow {
 		System.out.println("*****    *****");
 
 
-		if (leftCard<rightCard) {
-			result="h";
-		} if (leftCard>rightCard) {
-			result="l";
-		} else if (leftCard==rightCard){
-			result=select;
+		if (leftCard < rightCard) {
+			result = "h";
+		} if (leftCard > rightCard) {
+			result = "l";
+		} else if (leftCard == rightCard){
+			result = select;
 		}
 
 		if (select.equals(result)) {
