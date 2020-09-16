@@ -1,4 +1,4 @@
-package mmm.myproject_knd_java ;
+package myproject;
 
 import java.util.Scanner;
 
