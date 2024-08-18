@@ -4,70 +4,103 @@ import java.util.Scanner;
 
 public class HighAndLow {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-		while(true) {
+        while (true) {
+            int leftCard = drawCard();
+            int rightCard = drawCard();
 
-		int leftCard = (int)(Math.random()*9)+1;
+            displayGameStart();
+            displayQuestion(leftCard);
 
-	    int rightCard = (int)(Math.random()*9)+1;
+            String select = getUserChoice(sc);
+            displayUserSelection(select);
 
-		System.out.println("*****************");
-		System.out.println("* High & Low    *");
-		System.out.println("*****************");
-		System.out.println();
-		System.out.println("   [問題表示]   ");
-		System.out.println("*****    *****");
-		System.out.println("*   *    * * *");
-		System.out.print("* ");
-		System.out.print(leftCard);
-		System.out.print(" *   ");
-		System.out.println(" * * *");
-		System.out.println("*   *    * * *");
-		System.out.println("*****    *****");
-		Scanner sc = new Scanner(System.in);
-		System.out.print("High or Low ?(h/l) >");
-		String select=sc.nextLine();
-		if (select.equals("h")) {
-			System.out.println("→Highを選択しました。");
-		} else {
-			System.out.println("→Lowを選択しました。");
-		}
+            String result = determineResult(leftCard, rightCard);
 
-		System.out.println();
+            displayResult(leftCard, rightCard);
+            if (select.equals(result)) {
+                System.out.println("  →You Win!");
+            } else {
+                System.out.println("  →You Lose..");
+                System.out.println();
+                System.out.println("  --ゲーム終了--");
+                break;
+            }
+            System.out.println();
+            System.out.println("  --次のラウンド--");
+        }
 
-		String result=null;
-		System.out.println("   [結果表示]   ");
-		System.out.println("*****    *****");
-		System.out.println("*   *    *   *");
-		System.out.print("* ");
-		System.out.print(leftCard);
-		System.out.print(" *    ");
-		System.out.print("* ");
-		System.out.print(rightCard);
-		System.out.println(" *  ");
-		System.out.println("*   *    *   *");
-		System.out.println("*****    *****");
+        sc.close();
+    }
 
+    private static int drawCard() {
+        return (int) (Math.random() * 9) + 1;
+    }
 
-		if (leftCard < rightCard) {
-			result = "h";
-		} if (leftCard > rightCard) {
-			result = "l";
-		} else if (leftCard == rightCard){
-			result = select;
-		}
+    private static void displayGameStart() {
+        System.out.println("*****************");
+        System.out.println("* High & Low    *");
+        System.out.println("*****************");
+        System.out.println();
+    }
 
-		if (select.equals(result)) {
-			System.out.println("  →you Win!");
-		} else {
-			System.out.println("  →you Lose..");
-			System.out.println();
-			System.out.println("  --ゲーム終了--");
-			break;
-		}
-			System.out.println();
-			System.out.println("  --ゲーム終了--");
-		}
-	}
+    private static void displayQuestion(int leftCard) {
+        System.out.println("   [問題表示]   ");
+        System.out.println("*****    *****");
+        System.out.println("*   *    * * *");
+        System.out.print("* ");
+        System.out.print(leftCard);
+        System.out.print(" *   ");
+        System.out.println(" * * *");
+        System.out.println("*   *    * * *");
+        System.out.println("*****    *****");
+    }
+
+    private static String getUserChoice(Scanner sc) {
+        String select;
+        while (true) {
+            System.out.print("High or Low ?(h/l) > ");
+            select = sc.nextLine().trim().toLowerCase();
+            if (select.equals("h") || select.equals("l")) {
+                break;
+            }
+            System.out.println("無効な入力です。もう一度入力してください。");
+        }
+        return select;
+    }
+
+    private static void displayUserSelection(String select) {
+        if (select.equals("h")) {
+            System.out.println("→Highを選択しました。");
+        } else {
+            System.out.println("→Lowを選択しました。");
+        }
+    }
+
+    private static String determineResult(int leftCard, int rightCard) {
+        if (leftCard < rightCard) {
+            return "h";
+        } else if (leftCard > rightCard) {
+            return "l";
+        } else {
+            return null;  // カードが同じ場合は選択したものが勝ち
+        }
+    }
+
+    private static void displayResult(int leftCard, int rightCard) {
+        System.out.println();
+        System.out.println("   [結果表示]   ");
+        System.out.println("*****    *****");
+        System.out.println("*   *    *   *");
+        System.out.print("* ");
+        System.out.print(leftCard);
+        System.out.print(" *    ");
+        System.out.print("* ");
+        System.out.print(rightCard);
+        System.out.println(" *  ");
+        System.out.println("*   *    *   *");
+        System.out.println("*****    *****");
+    }
 }
