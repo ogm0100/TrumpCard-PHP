@@ -6,6 +6,7 @@ public class HighAndLow {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int score = 0;
 
         while (true) {
             int leftCard = drawCard();
@@ -22,6 +23,9 @@ public class HighAndLow {
             displayResult(leftCard, rightCard);
             if (select.equals(result)) {
                 System.out.println("  →You Win!");
+                score++;
+            } else if (result == null) {
+                System.out.println("  →Draw! No points awarded.");
             } else {
                 System.out.println("  →You Lose..");
                 System.out.println();
@@ -30,8 +34,13 @@ public class HighAndLow {
             }
             System.out.println();
             System.out.println("  --次のラウンド--");
+
+            if (!askContinue(sc)) {
+                break;
+            }
         }
 
+        System.out.println("最終スコア: " + score);
         sc.close();
     }
 
@@ -102,5 +111,18 @@ public class HighAndLow {
         System.out.println(" *  ");
         System.out.println("*   *    *   *");
         System.out.println("*****    *****");
+    }
+
+    private static boolean askContinue(Scanner sc) {
+        while (true) {
+            System.out.print("ゲームを続けますか？(y/n) > ");
+            String input = sc.nextLine().trim().toLowerCase();
+            if (input.equals("y")) {
+                return true;
+            } else if (input.equals("n")) {
+                return false;
+            }
+            System.out.println("無効な入力です。もう一度入力してください。");
+        }
     }
 }
