@@ -57,13 +57,18 @@ public class HighAndLow {
 
     private static void displayQuestion(int leftCard) {
         System.out.println("   [問題表示]   ");
+        displayCard(leftCard, " * * *");
+    }
+
+    private static void displayCard(int leftCard, String rightCard) {
         System.out.println("*****    *****");
-        System.out.println("*   *    * * *");
+        System.out.println("*   *    *   *");
         System.out.print("* ");
         System.out.print(leftCard);
-        System.out.print(" *   ");
-        System.out.println(" * * *");
-        System.out.println("*   *    * * *");
+        System.out.print(" *    ");
+        System.out.print(rightCard);
+        System.out.println(" *  ");
+        System.out.println("*   *    *   *");
         System.out.println("*****    *****");
     }
 
@@ -101,16 +106,7 @@ public class HighAndLow {
     private static void displayResult(int leftCard, int rightCard) {
         System.out.println();
         System.out.println("   [結果表示]   ");
-        System.out.println("*****    *****");
-        System.out.println("*   *    *   *");
-        System.out.print("* ");
-        System.out.print(leftCard);
-        System.out.print(" *    ");
-        System.out.print("* ");
-        System.out.print(rightCard);
-        System.out.println(" *  ");
-        System.out.println("*   *    *   *");
-        System.out.println("*****    *****");
+        displayCard(leftCard, String.valueOf(rightCard));
     }
 
     private static boolean askContinue(Scanner sc) {
