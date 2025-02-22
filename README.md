@@ -1,4 +1,4 @@
-# TrumpCard-Java
+# TrumpCard
 
 ＜ゲーム説明＞
 
